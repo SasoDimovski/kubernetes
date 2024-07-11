@@ -5,19 +5,19 @@ pipeline {
   }
   agent any
   stages {
-    stage('Checkout Source') {
+    stage('Pull од GitHub') {
       steps {
         git 'https://github.com/SasoDimovski/kubernetes.git'
       }
     }
-    stage('Build image') {
+    stage('Build на Docker Image') {
       steps{
         script {
           dockerImage = docker.build dockerimagename
         }
       }
     }
-    stage('Pushing Image') {
+    stage('Push на DockerHub') {
       environment {
           registryCredential = 'kubernetes-dockerhub'
            }
@@ -29,11 +29,10 @@ pipeline {
         }
       }
     }
-    stage('Deploying React.js container to Kubernetes') {
+    stage('Deploy на апликација на Kubernetes') {
       steps {
         script {
-          kubernetesDeploy(configs: "deployment.yaml", 
-                                         "service.yaml")
+          kubernetesDeploy(configs: "deployment.yaml", "service.yaml")
         }
       }
     }
