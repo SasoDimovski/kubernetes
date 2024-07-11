@@ -31,7 +31,7 @@ pipeline {
     }
     stage('Deploy на апликација на Kubernetes') {
       steps {
-
+                echo 'Upload to Kubernetes...'
       }
     }
   }
