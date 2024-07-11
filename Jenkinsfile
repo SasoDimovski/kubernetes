@@ -31,9 +31,7 @@ pipeline {
     }
     stage('Deploy на апликација на Kubernetes') {
       steps {
-        script {
-          kubernetesDeploy(configs: "deployment.yaml", "service.yaml")
-        }
+
       }
     }
   }
